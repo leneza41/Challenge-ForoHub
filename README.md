@@ -2,7 +2,7 @@
 Challenge Alura - Oracle One
 
 
-Simulation of a blogpost based on a courses site backend
+Backend simulation of a blogpost based on a courses site.
 
 
 **Note that you must insert first some data into the database, the only available endpoint for creating data is for table topics**
