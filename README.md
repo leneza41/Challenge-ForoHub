@@ -25,6 +25,8 @@ Example:
 ### /topics
 - GET: Returns a json of all topics saved
 - POST: Creates a new topic, no two topics should have same title **and** message
+
+  
 Example:
 ```json
   {
@@ -38,7 +40,9 @@ Example:
 #### /topics/{id}
 - GET: Returns a json of an specific topic
 - PUT: Updates the topic with given id
-Example use:
+
+  
+Example:
 ```json
   {
     "title":"New Topic title",
