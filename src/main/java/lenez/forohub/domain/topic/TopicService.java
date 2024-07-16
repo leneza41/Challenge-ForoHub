@@ -31,10 +31,12 @@ public class TopicService {
         User author = userRepository.findById(data.author()).get();
         return repository.save(new Topic(data.title(), data.message(), author, course));
     }
-    public ResponseEntity<Topic> findById(Long id) {
-        return repository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<TopicResponse> findById(Long id) {
+        if(repository.existsById(id)) {
+            Topic topic = repository.findById(id).get();
+            return ResponseEntity.ok(new TopicResponse(topic));
+        }
+        return ResponseEntity.notFound().build();
     }
     public ResponseEntity<List<TopicResponse>> getTopics() {
         List<Topic> topics = repository.findAll();
@@ -42,7 +44,7 @@ public class TopicService {
         topics.forEach(topic -> responses.add(new TopicResponse(topic)));
         return ResponseEntity.ok(responses);
     }
-    public ResponseEntity<Topic> update(Long id, TopicRequest data) {
+    public ResponseEntity<TopicResponse> update(Long id, TopicRequest data) {
         validators.forEach(validator -> validator.validate(data));
         Course course = courseRepository.findById(data.course()).get();
         User author = userRepository.findById(data.author()).get();
@@ -52,7 +54,7 @@ public class TopicService {
                     topic.setMessage(data.message());
                     topic.setAuthor(author);
                     topic.setCourse(course);
-                    return ResponseEntity.ok(repository.save(topic));
+                    return ResponseEntity.ok(new TopicResponse(repository.save(topic)));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }

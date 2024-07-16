@@ -25,7 +25,7 @@ public class TopicController {
         return ResponseEntity.created(uri).body(topic);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Topic> findById(@PathVariable Long id) {
+    public ResponseEntity<TopicResponse> findById(@PathVariable Long id) {
         return service.findById(id);
     }
     @GetMapping
@@ -34,7 +34,7 @@ public class TopicController {
     }
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Topic> update(@PathVariable Long id, @RequestBody @Valid TopicRequest data) {
+    public ResponseEntity<TopicResponse> update(@PathVariable Long id, @RequestBody @Valid TopicRequest data) {
         return service.update(id, data);
     }
     @DeleteMapping("/{id}")
