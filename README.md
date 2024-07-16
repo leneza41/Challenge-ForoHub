@@ -20,7 +20,7 @@ Example:
     "password": "password123"
 }
 ```
-**The password in the datavase should be encrypted using BCrypt**
+**The password in the database should be encrypted using BCrypt**
 
 ### /topics
 - GET: Returns a json of all topics saved
