@@ -22,7 +22,7 @@ public class TopicController {
     public ResponseEntity register(@RequestBody @Valid TopicRequest data, UriComponentsBuilder uriBuilder) {
         Topic topic = service.register(data);
         var uri = uriBuilder.path("topic/{id}").buildAndExpand(topic.getId()).toUri();
-        return ResponseEntity.created(uri).body(topic);
+        return ResponseEntity.created(uri).body(new TopicResponse(topic));
     }
     @GetMapping("/{id}")
     public ResponseEntity<TopicResponse> findById(@PathVariable Long id) {
